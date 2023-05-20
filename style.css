@@ -8,12 +8,14 @@
     --container-gradient-shade: rgba(0,255,0,0);
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgb(155, 153, 153);
-    --cancel-btn: rgb(255,185,46);
+    --cancel-btn: rgb(218, 163, 14);
     --equal-btn: #a73ffc86;
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
     --btn-text-color: white;
+    --btn-ac-color: rgb(160, 14, 14);
+    --btn-text-press: #dbdbdb;
 }
 
 :root.light{
@@ -27,10 +29,12 @@
     --btn-hightlight: rgb(255, 255, 255);
     --btn-purple: #E3D7ED; 
     --btn-lightyellow: rgb(246,238,225);
-    --cancel-btn: #ffb338ea;
+    --cancel-btn: #eba432f1;
     --equal-btn: #8F27DE;
     --backspace-color: #e2e5e5; 
-    --btn-text-color: rgb(19, 18, 18);
+    --btn-text-color: rgb(61, 60, 60);
+    --btn-ac-color: rgba(192, 41, 41, 0.801);
+    --btn-text-press: #000000;
 }
 
 :root.dark{
@@ -42,18 +46,21 @@
     --container-gradient-shade: rgba(0,255,0,0);
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgba(155, 153, 153, 0.418);
-    --cancel-btn: rgba(255, 185, 46, 0.836);
+    --cancel-btn: rgb(218, 163, 14);;
     --equal-btn: #a73ffca8;
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
     --btn-text-color: white;
+    --btn-ac-color: rgb(160, 14, 14);
+    --btn-text-press: #dbdbdb;
 }
 
 
 body{
-    
+    font-family:  helvetica, sans-serif;
     background-color: var(--body-color);
+    
     
 }
 
@@ -64,7 +71,7 @@ body{
                 
     box-shadow: 15px 10px 35px 10px var(--body-shadow), 
                 inset 2px 1px 5px -3px var(--body-shadow-highlight),
-                inset -4px -4px 5px -3px var(--body-shadow-dark);
+                inset -4px -4px 2px -2px var(--body-shadow-dark);
     position: relative;
     padding: 10px 25px 20px 25px;
     width: 280px;
@@ -85,9 +92,44 @@ body{
         'oneBtn twoBtn threeBtn equalsBtn'
         'dotBtn zeroBtn backspaceBtn equalsBtn'
     ;
-
+    
 }
 
+input{
+    appearance: none;
+    position: relative;
+    margin: auto;
+    width: 40px;
+    height: 20px;
+    border-radius: 25px;
+    background-color: #666666;
+    outline: none;
+    cursor: pointer;    
+    box-shadow: 0px 0px 0px 0px var(--btn-shadow),
+                inset 2px 2px 4px -1px var(--btn-shadow);
+}
+
+input::after{
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: rgb(59, 59, 59);
+    transition: left .3s;
+}
+
+input:checked{
+    background-color: #d1cfcf;
+}
+
+input:checked::after{
+    background-color: whitesmoke;
+    left: 75%;
+}
 
 .btn{
     border-radius: 2rem;
@@ -120,6 +162,12 @@ body{
                 inset 0.5px 1px 1px 0.5px var(--btn-shadow);
 }
 
+.btn:active span{
+    color: var(--btn-text-press);    
+}
+
+
+
 button{
     border-radius: 2rem;
     all: unset;
@@ -139,12 +187,31 @@ button span{
     margin: auto;
 }
 
+.btn span{
+    font-weight: 900;
+}
+
+.btn.equalsBtn span{
+    font-weight: 900;
+    font-size: 2rem;
+}
 
 
-.body-container div:nth-child(1){ grid-area: screen-display;
-                                    }
-.body-container div:nth-child(2){grid-area: toggleBtn;}
-.body-container div:nth-child(3){grid-area: ACbtn;}
+
+.body-container div:nth-child(1){ 
+                                    grid-area: screen-display;
+                                                                }
+
+.body-container div:nth-child(2){
+                                    grid-area: toggleBtn;
+                                    justify-content: center;
+                                    display: grid;
+                                                        }
+.body-container div:nth-child(3){
+                                    grid-area: ACbtn;
+                                    background-color: var(--btn-ac-color);
+                                                            }
+
 .body-container div:nth-child(4){grid-area: CBtn;}
 .body-container div:nth-child(5){grid-area: leftbracketBtn;}
 .body-container div:nth-child(6){grid-area: rightbracketBtn;}
