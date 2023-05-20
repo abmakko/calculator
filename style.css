@@ -2,20 +2,49 @@
 :root{
     --body-color: #2B2F33;
     --body-shadow: rgb(31, 30, 30);
+    --body-shadow-highlight: rgba(255, 255, 255, 0.384);
+    --body-shadow-dark: rgb(19, 19, 19);
     --container-gradient-light: rgba(107, 107, 107, 0.8);
     --container-gradient-shade: rgba(0,255,0,0);
+    --btn-shadow: rgba(0, 0, 0, 0.438);
+    --btn-hightlight: rgb(155, 153, 153);
+    --cancel-btn: rgb(255,185,46);
+    --equal-btn: #a73ffc;
+    --btn-purple: #4B365F; 
+    --btn-lightyellow: #4B443E;
+    --backspace-color: #28292D; 
 }
 
 :root.light{
     --body-color: #FDFDFD;
-    --body-shadow: rgb(31, 30, 30)
+    --body-shadow: rgba(107, 106, 106, 0.685);
+    --body-shadow-highlight: rgb(255, 255, 255);
+    --body-shadow-dark: rgb(92, 91, 91);
+    --container-gradient-light: rgba(255, 255, 255, 0.973);
+    --container-gradient-shade: rgba(229, 226, 226, 0.781);
+    --btn-shadow: rgba(99, 99, 99, 0.438);
+    --btn-hightlight: rgb(255, 255, 255);
+    --btn-purple: #E3D7ED; 
+    --btn-lightyellow: rgb(246,238,225);
+    --cancel-btn: #ffb338ea;
+    --equal-btn: #8F27DE;
+    --backspace-color: #e2e5e5; 
 }
 
 :root.dark{
     --body-color: #2B2F33;
     --body-shadow: rgb(31, 30, 30);
+    --body-shadow-highlight: rgba(255, 255, 255, 0.384);
+    --body-shadow-dark: rgb(19, 19, 19);
     --container-gradient-light: rgba(107, 107, 107, 0.8);
     --container-gradient-shade: rgba(0,255,0,0);
+    --btn-shadow: rgba(0, 0, 0, 0.438);
+    --btn-hightlight: rgba(155, 153, 153, 0.418);
+    --cancel-btn: rgb(255,185,46);
+    --equal-btn: #a73ffc;
+    --btn-purple: #4B365F; 
+    --btn-lightyellow: #4B443E;
+    --backspace-color: #28292D; 
 }
 
 
@@ -30,11 +59,13 @@ body{
     background: linear-gradient(180deg, var(--container-gradient-light), var(--container-gradient-shade) 80.71%),      
                 linear-gradient(140deg, var(--container-gradient-light), var(--container-gradient-shade)  60.71%);  
                 
-    box-shadow: 15px 10px 35px 10px var(--body-shadow);
+    box-shadow: 15px 10px 35px 10px var(--body-shadow), 
+                inset 2px 1px 5px -3px var(--body-shadow-highlight),
+                inset -4px -4px 5px -3px var(--body-shadow-dark);
     position: relative;
-    padding: 10px 30px 20px 30px;
-    width: 300px;
-    min-width: 300px;
+    padding: 10px 25px 20px 25px;
+    width: 280px;
+    min-width: 250px;
     display: grid;
     margin: auto;
     height: 600px;
@@ -57,9 +88,29 @@ body{
 
 .btn{
     border-radius: 2rem;
-    box-shadow: 3px 3px 4px 0.5px rgba(0, 0, 0, 0.438);
+    box-shadow: 3px 3px 4px 0.5px var(--btn-shadow),
+                inset 2px 1px 5px -3px var(--btn-hightlight);
 }
 
+.purple-btn{
+    background-color: var(--btn-purple);
+}
+
+.light-yellow {
+    background-color: var(--btn-lightyellow);
+}
+
+.CBtn{
+    background-color: var(--cancel-btn);
+}
+
+.equalsBtn{
+    background-color: var(--equal-btn);
+}
+
+.backspaceBtn{
+    background-color: var(--backspace-color);
+}
 
 .body-container div:nth-child(1){ grid-area: screen-display;
                                     }
