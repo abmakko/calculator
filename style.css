@@ -9,7 +9,7 @@
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgb(155, 153, 153);
     --cancel-btn: rgb(255,185,46);
-    --equal-btn: #a73ffc;
+    --equal-btn: #a73ffc86;
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
@@ -42,8 +42,8 @@
     --container-gradient-shade: rgba(0,255,0,0);
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgba(155, 153, 153, 0.418);
-    --cancel-btn: rgb(255,185,46);
-    --equal-btn: #a73ffc;
+    --cancel-btn: rgba(255, 185, 46, 0.836);
+    --equal-btn: #a73ffca8;
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
@@ -115,6 +115,11 @@ body{
     background-color: var(--backspace-color);
 }
 
+.btn:active{
+    box-shadow: 0px 0px 0px 0px var(--btn-shadow),
+                inset 0.5px 1px 1px 0.5px var(--btn-shadow);
+}
+
 button{
     border-radius: 2rem;
     all: unset;
@@ -133,6 +138,8 @@ button span{
     justify-content: center;
     margin: auto;
 }
+
+
 
 .body-container div:nth-child(1){ grid-area: screen-display;
                                     }

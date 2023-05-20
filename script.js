@@ -1,2 +1,2 @@
 const root = document.documentElement;
-root.className = "dark";
+root.className = "light";
