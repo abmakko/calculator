@@ -13,6 +13,7 @@
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
+    --btn-text-color: white;
 }
 
 :root.light{
@@ -29,6 +30,7 @@
     --cancel-btn: #ffb338ea;
     --equal-btn: #8F27DE;
     --backspace-color: #e2e5e5; 
+    --btn-text-color: rgb(19, 18, 18);
 }
 
 :root.dark{
@@ -45,6 +47,7 @@
     --btn-purple: #4B365F; 
     --btn-lightyellow: #4B443E;
     --backspace-color: #28292D; 
+    --btn-text-color: white;
 }
 
 
@@ -110,6 +113,25 @@ body{
 
 .backspaceBtn{
     background-color: var(--backspace-color);
+}
+
+button{
+    border-radius: 2rem;
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-self: stretch;      
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+button span{
+    color: var(--btn-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .body-container div:nth-child(1){ grid-area: screen-display;
