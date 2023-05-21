@@ -16,7 +16,7 @@
     --btn-ac-color: rgb(160, 14, 14);
     --btn-text-press: #dbdbdb;
     --screen-font-color: rgba(216, 213, 213, 0.5);
-    --equals-font-color: rgba(209, 207, 207, 0.87);
+    --equals-font-color: rgba(209, 207, 207, 0.836);
 }
 
 :root.light {
@@ -162,7 +162,7 @@ body {
 }
 
 .equals-input .result::before{
-    content: "=";
+    content: "";
     font-size: medium;
     position: absolute;
     top: 30%;
