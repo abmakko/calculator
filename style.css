@@ -1,24 +1,25 @@
-
-:root{
+:root {
     --body-color: #2B2F33;
     --body-shadow: rgb(31, 30, 30);
     --body-shadow-highlight: rgba(255, 255, 255, 0.384);
     --body-shadow-dark: rgb(19, 19, 19);
     --container-gradient-light: rgba(107, 107, 107, 0.8);
-    --container-gradient-shade: rgba(0,255,0,0);
+    --container-gradient-shade: rgba(0, 255, 0, 0);
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgb(155, 153, 153);
     --cancel-btn: rgb(218, 163, 14);
     --equal-btn: #a73ffc86;
-    --btn-purple: #4B365F; 
+    --btn-purple: #4B365F;
     --btn-lightyellow: #4B443E;
-    --backspace-color: #28292D; 
+    --backspace-color: #28292D;
     --btn-text-color: white;
     --btn-ac-color: rgb(160, 14, 14);
     --btn-text-press: #dbdbdb;
+    --screen-font-color: rgba(216, 213, 213, 0.5);
+    --equals-font-color: rgba(209, 207, 207, 0.87);
 }
 
-:root.light{
+:root.light {
     --body-color: #FDFDFD;
     --body-shadow: rgba(107, 106, 106, 0.685);
     --body-shadow-highlight: rgb(255, 255, 255);
@@ -27,51 +28,54 @@
     --container-gradient-shade: rgba(229, 226, 226, 0.781);
     --btn-shadow: rgba(99, 99, 99, 0.438);
     --btn-hightlight: rgb(255, 255, 255);
-    --btn-purple: #E3D7ED; 
-    --btn-lightyellow: rgb(246,238,225);
+    --btn-purple: #E3D7ED;
+    --btn-lightyellow: rgb(246, 238, 225);
     --cancel-btn: #eba432f1;
     --equal-btn: #8F27DE;
-    --backspace-color: #e2e5e5; 
+    --backspace-color: #e2e5e5;
     --btn-text-color: rgb(61, 60, 60);
     --btn-ac-color: rgba(192, 41, 41, 0.801);
     --btn-text-press: #000000;
+    --screen-font-color: rgba(39, 39, 39, 0.507);
+    --equals-font-color: rgba(26, 25, 25, 0.678);
 }
 
-:root.dark{
+:root.dark {
     --body-color: #2B2F33;
     --body-shadow: rgb(31, 30, 30);
     --body-shadow-highlight: rgba(255, 255, 255, 0.384);
     --body-shadow-dark: rgb(19, 19, 19);
     --container-gradient-light: rgba(107, 107, 107, 0.8);
-    --container-gradient-shade: rgba(0,255,0,0);
+    --container-gradient-shade: rgba(0, 255, 0, 0);
     --btn-shadow: rgba(0, 0, 0, 0.438);
     --btn-hightlight: rgba(155, 153, 153, 0.418);
-    --cancel-btn: rgb(218, 163, 14);;
+    --cancel-btn: rgb(218, 163, 14);
+    ;
     --equal-btn: #a73ffca8;
-    --btn-purple: #4B365F; 
+    --btn-purple: #4B365F;
     --btn-lightyellow: #4B443E;
-    --backspace-color: #28292D; 
+    --backspace-color: #28292D;
     --btn-text-color: white;
     --btn-ac-color: rgb(160, 14, 14);
     --btn-text-press: #dbdbdb;
+    --screen-font-color: rgba(216, 213, 213, 0.5);
+    --equals-font-color: rgba(209, 207, 207, 0.87);
 }
 
 
-body{
-    font-family:  helvetica, sans-serif;
+body {
+    font-family: helvetica, sans-serif;
     background-color: var(--body-color);
-    
-    
 }
 
-.body-container{
+.body-container {
     border-radius: 1rem;
-    background: linear-gradient(180deg, var(--container-gradient-light), var(--container-gradient-shade) 80.71%),      
-                linear-gradient(140deg, var(--container-gradient-light), var(--container-gradient-shade)  60.71%);  
-                
-    box-shadow: 15px 10px 35px 10px var(--body-shadow), 
-                inset 2px 1px 5px -3px var(--body-shadow-highlight),
-                inset -4px -4px 2px -2px var(--body-shadow-dark);
+    background: linear-gradient(180deg, var(--container-gradient-light), var(--container-gradient-shade) 80.71%),
+        linear-gradient(140deg, var(--container-gradient-light), var(--container-gradient-shade) 60.71%);
+
+    box-shadow: 15px 10px 35px 10px var(--body-shadow),
+        inset 2px 1px 5px -3px var(--body-shadow-highlight),
+        inset -4px -4px 2px -2px var(--body-shadow-dark);
     position: relative;
     padding: 10px 25px 20px 25px;
     width: 280px;
@@ -82,7 +86,7 @@ body{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 4fr repeat(7, 1fr);
     gap: 0.5rem 1rem;
-    grid-template-areas: 
+    grid-template-areas:
         'screen-display screen-display screen-display screen-display'
         'toggleBtn . . ACbtn'
         'CBtn leftbracketBtn rightbracketBtn multiplyBtn'
@@ -92,10 +96,82 @@ body{
         'oneBtn twoBtn threeBtn equalsBtn'
         'dotBtn zeroBtn backspaceBtn equalsBtn'
     ;
+
+}
+
+.screen-display {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    padding-right: 0.4rem;
+    position: relative;
+    grid-template-areas: 'text-screen'
+        'equal-screen';
+}
+
+.equals-display {
+    grid-area: equal-screen;
+    position: relative;
+    display: grid;
+}
+
+.text-display {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(4, 1fr);
+    grid-area: text-screen;
+    text-align: right;
+}
+
+.text-display div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;  
+    color: var(--screen-font-color);  
+    font-size: 1rem;
+    font-weight: 500;
     
 }
 
-input{
+.text-input-1{
+    order: 4;
+}
+
+.text-input-2{
+    order: 3;
+}
+
+.text-input-3{
+    order: 2;
+}
+
+.text-input-4{
+    order: 1;
+}
+
+.equals-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--equals-font-color);  
+}
+
+.equals-input .result{
+    position: relative;
+}
+
+.equals-input .result::before{
+    content: "=";
+    font-size: medium;
+    position: absolute;
+    top: 30%;
+    left: -30px;
+}
+
+
+
+input {
     appearance: none;
     position: relative;
     margin: auto;
@@ -104,12 +180,12 @@ input{
     border-radius: 25px;
     background-color: #666666;
     outline: none;
-    cursor: pointer;    
+    cursor: pointer;
     box-shadow: 0px 0px 0px 0px var(--btn-shadow),
-                inset 2px 2px 4px -1px var(--btn-shadow);
+        inset 2px 2px 4px -1px var(--btn-shadow);
 }
 
-input::after{
+input::after {
     position: absolute;
     content: '';
     top: 50%;
@@ -122,22 +198,22 @@ input::after{
     transition: left .3s;
 }
 
-input:checked{
+input:checked {
     background-color: #d1cfcf;
 }
 
-input:checked::after{
+input:checked::after {
     background-color: whitesmoke;
     left: 75%;
 }
 
-.btn{
+.btn {
     border-radius: 2rem;
     box-shadow: 3px 3px 4px 0.5px var(--btn-shadow),
-                inset 2px 1px 5px -3px var(--btn-hightlight);
+        inset 2px 1px 5px -3px var(--btn-hightlight);
 }
 
-.purple-btn{
+.purple-btn {
     background-color: var(--btn-purple);
 }
 
@@ -145,41 +221,41 @@ input:checked::after{
     background-color: var(--btn-lightyellow);
 }
 
-.CBtn{
+.CBtn {
     background-color: var(--cancel-btn);
 }
 
-.equalsBtn{
+.equalsBtn {
     background-color: var(--equal-btn);
 }
 
-.backspaceBtn{
+.backspaceBtn {
     background-color: var(--backspace-color);
 }
 
-.btn:active{
+.btn:active {
     box-shadow: 0px 0px 0px 0px var(--btn-shadow),
-                inset 0.5px 1px 1px 0.5px var(--btn-shadow);
+        inset 0.5px 1px 1px 0.5px var(--btn-shadow);
 }
 
-.btn:active span{
-    color: var(--btn-text-press);    
+.btn:active span {
+    color: var(--btn-text-press);
 }
 
 
 
-button{
+button {
     border-radius: 2rem;
     all: unset;
     cursor: pointer;
     display: flex;
-    align-self: stretch;      
+    align-self: stretch;
     height: 100%;
     width: 100%;
     position: relative;
 }
 
-button span{
+button span {
     color: var(--btn-text-color);
     display: flex;
     align-items: center;
@@ -187,51 +263,118 @@ button span{
     margin: auto;
 }
 
-.btn span{
+.btn span {
     font-weight: 900;
 }
 
-.btn.equalsBtn span{
+.btn.equalsBtn span {
     font-weight: 900;
     font-size: 2rem;
 }
 
+.screen-display {
+    grid-area: screen-display;
+}
 
+.toggleBtn {
+    grid-area: toggleBtn;
+    justify-content: center;
+    display: grid;
+}
 
-.body-container div:nth-child(1){ 
-                                    grid-area: screen-display;
-                                                                }
+.btn.ACbtn {
+    grid-area: ACbtn;
+    background-color: var(--btn-ac-color);
+}
 
-.body-container div:nth-child(2){
-                                    grid-area: toggleBtn;
-                                    justify-content: center;
-                                    display: grid;
-                                                        }
-.body-container div:nth-child(3){
-                                    grid-area: ACbtn;
-                                    background-color: var(--btn-ac-color);
-                                                            }
+.btn.CBtn {
+    grid-area: CBtn;
+}
 
-.body-container div:nth-child(4){grid-area: CBtn;}
-.body-container div:nth-child(5){grid-area: leftbracketBtn;}
-.body-container div:nth-child(6){grid-area: rightbracketBtn;}
-.body-container div:nth-child(7){grid-area: multiplyBtn;}
-.body-container div:nth-child(8){grid-area: squarertBtn;}
-.body-container div:nth-child(9){grid-area: modulousBtn;}
-.body-container div:nth-child(10){grid-area:xsquareBtn;}
-.body-container div:nth-child(11){grid-area:xdivisionBtn;}
-.body-container div:nth-child(12){grid-area:sevenBtn;}
-.body-container div:nth-child(13){grid-area:eightBtn;}
-.body-container div:nth-child(14){grid-area:nineBtn;}
-.body-container div:nth-child(15){grid-area:minusBtn;}
-.body-container div:nth-child(16){grid-area:fourBtn;}
-.body-container div:nth-child(17){grid-area:fiveBtn;}
-.body-container div:nth-child(18){grid-area:sixBtn;}
-.body-container div:nth-child(19){grid-area:additionBtn;}
-.body-container div:nth-child(20){grid-area:oneBtn;}
-.body-container div:nth-child(21){grid-area:twoBtn;}
-.body-container div:nth-child(22){grid-area:threeBtn;}
-.body-container div:nth-child(23){grid-area:equalsBtn;}
-.body-container div:nth-child(24){grid-area:dotBtn;}
-.body-container div:nth-child(25){grid-area:zeroBtn;}
-.body-container div:nth-child(26){grid-area:backspaceBtn;}
+.body-container div:nth-child(5) {
+    grid-area: leftbracketBtn;
+}
+
+.body-container div:nth-child(6) {
+    grid-area: rightbracketBtn;
+}
+
+.body-container div:nth-child(7) {
+    grid-area: multiplyBtn;
+}
+
+.body-container div:nth-child(8) {
+    grid-area: squarertBtn;
+}
+
+.body-container div:nth-child(9) {
+    grid-area: modulousBtn;
+}
+
+.body-container div:nth-child(10) {
+    grid-area: xsquareBtn;
+}
+
+.body-container div:nth-child(11) {
+    grid-area: xdivisionBtn;
+}
+
+.body-container div:nth-child(12) {
+    grid-area: sevenBtn;
+}
+
+.body-container div:nth-child(13) {
+    grid-area: eightBtn;
+}
+
+.body-container div:nth-child(14) {
+    grid-area: nineBtn;
+}
+
+.body-container div:nth-child(15) {
+    grid-area: minusBtn;
+}
+
+.body-container div:nth-child(16) {
+    grid-area: fourBtn;
+}
+
+.body-container div:nth-child(17) {
+    grid-area: fiveBtn;
+}
+
+.body-container div:nth-child(18) {
+    grid-area: sixBtn;
+}
+
+.body-container div:nth-child(19) {
+    grid-area: additionBtn;
+}
+
+.body-container div:nth-child(20) {
+    grid-area: oneBtn;
+}
+
+.body-container div:nth-child(21) {
+    grid-area: twoBtn;
+}
+
+.body-container div:nth-child(22) {
+    grid-area: threeBtn;
+}
+
+.body-container div:nth-child(23) {
+    grid-area: equalsBtn;
+}
+
+.body-container div:nth-child(24) {
+    grid-area: dotBtn;
+}
+
+.body-container div:nth-child(25) {
+    grid-area: zeroBtn;
+}
+
+.body-container div:nth-child(26) {
+    grid-area: backspaceBtn;
+}
