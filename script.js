@@ -17,18 +17,24 @@ function toggleTheme() {
 */
 
 const numericKeys = document.getElementsByClassName("numeric");
-const textDisplay1 = document.getElementById("input-1");
-const textDisplay2 = document.getElementById("input-2");
-const textDisplay3 = document.getElementById("input-3");
-const textDisplay4 = document.getElementById("input-4");
+const textDisplay1 = document.getElementById("text-1");
+const textDisplay2 = document.getElementById("text-2");
+const textDisplay3 = document.getElementById("text-3");
+const textDisplay4 = document.getElementById("text-4");
 
-test_array = new Array();
+let exponent = 30;
+let input_counter = 0;
+let temp_string = "";
 
 Array.from(numericKeys).forEach((element) =>
   element.addEventListener("click", (e) => {
     e.stopPropagation();
     if (e.target.tagName.toLowerCase() === "span") {
-      textDisplay1.textContent += e.target.textContent;
-    } else textDisplay1.textContent += e.target.value;
+      textDisplay1.innerText += e.target.textContent;
+      input_counter++;
+    } else {
+      textDisplay1.innerText += e.target.value;
+      input_counter++;
+    }
   })
 );

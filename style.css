@@ -15,7 +15,7 @@
     --btn-text-color: white;
     --btn-ac-color: rgb(160, 14, 14);
     --btn-text-press: #dbdbdb;
-    --screen-font-color: rgba(216, 213, 213, 0.5);
+    --screen-font-color: rgba(228, 225, 225, 0.5);
     --equals-font-color: rgba(209, 207, 207, 0.836);
 }
 
@@ -58,7 +58,7 @@
     --btn-text-color: white;
     --btn-ac-color: rgb(160, 14, 14);
     --btn-text-press: #dbdbdb;
-    --screen-font-color: rgba(216, 213, 213, 0.5);
+    --screen-font-color: rgba(228, 225, 225, 0.5);
     --equals-font-color: rgba(209, 207, 207, 0.87);
 }
 
@@ -129,22 +129,27 @@ body {
     color: var(--screen-font-color);  
     font-size: 1rem;
     font-weight: 500;
-    
+    max-width: 270px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1)20%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1)20%);
 }
 
-.text-input-1{
+
+
+#input-1{
     order: 4;
 }
 
-.text-input-2{
+#input-2{
     order: 3;
 }
 
-.text-input-3{
+#input-3{
     order: 2;
 }
 
-.text-input-4{
+#input-4{
     order: 1;
 }
 
