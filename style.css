@@ -114,6 +114,13 @@ body {
     display: grid;
 }
 
+.equals-display div{
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1)20%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1)20%);
+
+}
+
 .text-display {
     display: grid;
     grid-auto-flow: row;
@@ -125,7 +132,7 @@ body {
 .text-display div{
     display: flex;
     justify-content: flex-end;
-    align-items: center;  
+    align-items: flex-end;  
     color: var(--screen-font-color);  
     font-size: 1rem;
     font-weight: 500;
@@ -162,11 +169,11 @@ body {
     color: var(--equals-font-color);  
 }
 
-.equals-input .result{
+.equals-input #result{
     position: relative;
 }
 
-.equals-input .result::before{
+.equals-input #result::before{
     content: "";
     font-size: medium;
     position: absolute;
