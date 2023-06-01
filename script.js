@@ -22,31 +22,34 @@ const textDisplay2 = document.getElementById("text-2");
 const textDisplay3 = document.getElementById("text-3");
 const textDisplay4 = document.getElementById("text-4");
 
-const operandObjects = document.getElementsByClassName("operand");
+const operatorObjects = document.getElementsByClassName("operator");
+
+const plusNegetiveButton = document.getElementById("plus-negative");
 
 const resultInput = document.getElementById("result");
 
 const backSpaceBtn = document.getElementById("backspace");
 
-let operandToggle = true;
-let minusNegetiveToggle = true;
-let plusMinusCheck = true;
-let repeatCheck = false;
-let operatorSwitch = true;
-let operandPusher = false;
-let backspaceChecker = true;
+let operatorAllow = false;
+let numeratorAllow = false;
+let operandtoggle = true;
+let plusNegativeAllow = true;
+let plusNetativeToggle = true;
+
 let temp_operator = "";
 let temp_number = "";
 let mathExpression = [];
 
+plusNegetiveButton.addEventListener("click", plusNegative);
+
 backSpaceBtn.addEventListener("click", backSpacer);
 
 Array.from(numericKeys).forEach((element) =>
-  element.addEventListener("click", numerator)
+  element.addEventListener("click", numeratorFn)
 );
 
-Array.from(operandObjects).forEach((element) =>
-  element.addEventListener("click", operator)
+Array.from(operatorObjects).forEach((element) =>
+  element.addEventListener("click", operatorFn)
 );
 
 function displayArray(displayBlock, array) {
@@ -56,125 +59,67 @@ function displayArray(displayBlock, array) {
   }
 }
 
-function backSpacer(e) {
-  if (backspaceChecker === true) {
-    if (temp_operator != "" && operatorSwitch === false) {
-      //operator
-      mathExpression.push(temp_operator);
-      temp_operator = "";
-      temp_number = "";
-      plusMinusCheck = false;
-      backspaceChecker = false;
-      operandToggle = false;
-      plusMinusCheck = false;
-      //textDisplay1.textContent += temp_operator;
-      displayArray(textDisplay1, mathExpression);
-      //resultInput.textContent = textDisplay1.textContent;
-      displayArray(resultInput, mathExpression);
-      textDisplay1.textContent = "";
-    }
-
-    if (temp_number != "" && operatorSwitch === true) {
-      mathExpression.push(temp_number);
-      temp_number = "";
-      temp_operator = "";
-      plusMinusCheck = false;
-      operandToggle = true;
-      repeatCheck = true;
-      backspaceChecker = false;
-      //textDisplay1.textContent += temp_number;
-      displayArray(textDisplay1, mathExpression);
-      //resultInput.textContent = textDisplay1.textContent;
-      displayArray(resultInput, mathExpression);
-      textDisplay1.textContent = "";
-    }
-  }
-}
-
-function numerator(e) {
-  //push method for the operator, should only run once when/after the...
-  //numerator is pressed
-  if (temp_operator != "" && operatorSwitch === false) {
-    mathExpression.push(temp_operator);
-    plusMinusCheck = false;
-    operatorSwitch = true;
-  }
-
-  if (operandToggle === true) {
-    temp_number = "";
-    temp_number += e.target.innerText;
-    //textDisplay1.textContent += temp_operator;
-    displayArray(textDisplay1, mathExpression);
-    resultInput.textContent = "";
-    resultInput.textContent += e.target.innerText;
-    operandToggle = false;
-    operatorSwitch = true;
-    plusMinusCheck = false;
-  } else {
-    resultInput.textContent += e.target.innerText;
-    temp_number += e.target.innerText;
-    operatorSwitch = true;
-    plusMinusCheck = false;
-  }
-}
-
-function operator(e) {
-  //push method for the number string shold only run once when/after..
-  //the operator is pressed
-
-  if (
-    temp_number != "" &&
-    operatorSwitch === true &&
-    e.target.innerText != "±"
-  ) {
-    temp_number = Number(temp_number);
-    mathExpression.push(temp_number);
-    plusMinusCheck = false;
-    operatorSwitch = false;
-  }
-  if (operandToggle === false && e.target.innerText != "±") {
-    //textDisplay1.textContent += resultInput.textContent;
-    displayArray(textDisplay1, mathExpression);
-    resultInput.textContent = e.target.innerText;
-    temp_operator = e.target.innerText;
-    operandToggle = true;
-    repeatCheck = true;
-    operatorSwitch = false;
-    plusMinusCheck = false;
-  }
-
-  if (
-    repeatCheck == true &&
-    temp_operator != e.target.textContent &&
-    e.target.innerText != "±"
-  ) {
-    resultInput.textContent = e.target.innerText;
-    temp_operator = e.target.innerText;
-    operandToggle = true;
-  }
-
-  if (operandToggle === true && e.target.innerText === "√") {
-    resultInput.textContent = e.target.innerText;
-    temp_operator = e.target.innerText;
-    operandToggle = true;
-    operatorSwitch = false;
-  }
-
-  if (
-    operandToggle === true &&
-    e.target.innerText === "±" &&
-    plusMinusCheck == true
-  ) {
-    if (minusNegetiveToggle === true) {
+function plusNegative(e) {
+  if (plusNegativeAllow === true) {
+    if (plusNetativeToggle === true) {
       resultInput.textContent = "−";
+      plusNetativeToggle = false;
       temp_operator = "-";
-      minusNegetiveToggle = false;
-      operatorSwitch = false;
     } else {
       resultInput.textContent = "+";
+      plusNetativeToggle = true;
       temp_operator = "+";
-      minusNegetiveToggle = true;
-      operatorSwitch = false;
     }
+  }
+}
+
+function backSpacer(e) {
+  resultInput.textContent = textDisplay1.textContent;
+  textDisplay1.textContent = "";
+  temp_number = "";
+  temp_operator = "";
+  mathExpression.pop();
+  displayArray(resultInput, mathExpression);
+}
+
+function numeratorFn(e) {
+  numeratorAllow = true;
+  plusNegativeAllow = false;
+
+  //the result screen has to be wiped only once before new numerator input, the boolean check toggle ensures that
+  if (operandtoggle === true) {
+    resultInput.textContent = "";
+    operandtoggle = false;
+  }
+
+  if (numeratorAllow === true) {
+    resultInput.textContent += e.target.innerText;
+    if (temp_operator != "") {
+      mathExpression.push(temp_operator);
+      temp_operator = "";
+    }
+    displayArray(textDisplay1, mathExpression);
+    operatorAllow = true;
+  }
+}
+
+function operatorFn(e) {
+  //push method for the number string shold only run once when/after..
+  //the operator is pressed
+  if (operatorAllow === true && temp_operator != e.target.innerText) {
+    plusNegativeAllow = false;
+
+    //temp number would be pushed only once after the operator input.
+    if (operandtoggle === false) {
+      temp_number = resultInput.textContent;
+      mathExpression.push(temp_number);
+    }
+    resultInput.textContent = e.target.innerText;
+    temp_operator = e.target.innerText;
+
+    displayArray(textDisplay1, mathExpression);
+
+    numeratorAllow = true;
+    operandtoggle = true;
   }
 }
