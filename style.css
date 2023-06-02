@@ -17,6 +17,7 @@
     --btn-text-press: #dbdbdb;
     --screen-font-color: rgba(228, 225, 225, 0.5);
     --equals-font-color: rgba(209, 207, 207, 0.836);
+    --text3: "dark-mode";
 }
 
 :root.light {
@@ -38,6 +39,7 @@
     --btn-text-press: #000000;
     --screen-font-color: rgba(39, 39, 39, 0.507);
     --equals-font-color: rgba(26, 25, 25, 0.678);
+    --text3: "light-mode";
 }
 
 :root.dark {
@@ -60,6 +62,7 @@
     --btn-text-press: #dbdbdb;
     --screen-font-color: rgba(228, 225, 225, 0.5);
     --equals-font-color: rgba(209, 207, 207, 0.87);
+    --text3: "dark-mode";
 }
 
 
@@ -88,15 +91,28 @@ body {
     gap: 0.5rem 1rem;
     grid-template-areas:
         'screen-display screen-display screen-display screen-display'
-        'toggleBtn . . ACbtn'
-        'CBtn leftbracketBtn rightbracketBtn multiplyBtn'
-        'squarertBtn modulousBtn xsquareBtn xdivisionBtn'
+        'toggleBtn . . .'
+        'CBtn ACbtn rightbracketBtn modulousBtn'
+        'squarertBtn xsquareBtn multiplyBtn xdivisionBtn'
         'sevenBtn eightBtn nineBtn minusBtn'
         'fourBtn fiveBtn sixBtn additionBtn'
         'oneBtn twoBtn threeBtn equalsBtn'
         'dotBtn zeroBtn backspaceBtn equalsBtn'
     ;
 
+}
+
+.display-result{
+    --text: "=";
+}
+
+.text-display-1{
+    --text2: "=";
+}
+
+.leftbracketBtn, .rightbracketBtn{
+    display: none;
+    position: absolute;
 }
 
 .screen-display {
@@ -143,6 +159,10 @@ body {
 }
 
 
+#text-4{
+    -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 28%) 45%, rgb(0 0 0 / 75%)80%);
+    mask-image: linear-gradient(to bottom, rgb(0 0 0 / 28%) 45%, rgb(0 0 0 / 75%)80%);
+}
 
 #input-1{
     order: 4;
@@ -174,13 +194,29 @@ body {
 }
 
 .equals-input #result::before{
-    content: "";
+    
+    content: var(--text);
     font-size: medium;
     position: absolute;
     top: 30%;
-    left: -30px;
+    left: -15px;
 }
 
+#input-1::before{
+    content: var(--text2);  
+    margin-right: 0.5em;  
+    position: relative;
+}
+
+.toggleBtn::after{
+    content: var(--text3);
+    position: absolute;
+    top: 30%;
+    color: var(--btn-text-color);
+    left: 55px;
+    width: 50px;
+    font-size: 0.5rem;
+}
 
 
 input {
@@ -292,6 +328,8 @@ button span {
     grid-area: toggleBtn;
     justify-content: center;
     display: grid;
+    align-self: center;
+    position: relative;
 }
 
 .btn.ACbtn {
@@ -313,6 +351,7 @@ button span {
 
 .body-container div:nth-child(7) {
     grid-area: multiplyBtn;
+    
 }
 
 .body-container div:nth-child(8) {
@@ -321,6 +360,7 @@ button span {
 
 .body-container div:nth-child(9) {
     grid-area: modulousBtn;
+    display: none;
 }
 
 .body-container div:nth-child(10) {
