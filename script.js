@@ -187,6 +187,7 @@ function numeratorFn(e) {
   if (operandtoggle === true) {
     resultInput.textContent = "";
     operandtoggle = false;
+    decimalAllow = true;
   }
 
   if (numeratorAllow === true && numeratorBlock === false) {
