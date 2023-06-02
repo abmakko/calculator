@@ -75,6 +75,7 @@ function canceler() {
   numeratorAllow = true;
   numeratorBlock = false;
   operatorAllow = false;
+  plusNegativeAllow = true;
   bodyID.classList.remove("display-result");
   bodyID.classList.remove("text-display-1");
   mathExpression = [];
@@ -89,6 +90,7 @@ function clearScreen() {
   numeratorAllow = true;
   numeratorBlock = false;
   operatorAllow = false;
+  plusNegativeAllow = true;
   textDisplay1.textContent = "";
   textDisplay2.textContent = "";
   textDisplay3.textContent = "";
@@ -213,16 +215,24 @@ function operatorFn(e) {
     //temp number would be pushed only once after the operator input.
     if (operandtoggle === false) {
       temp_number = resultInput.textContent;
-      if (temp_number.length > 20) {
-        mathExpression.push(Number(temp_number).toExponential(10));
+      if (isNaN(temp_number) === false) {
+        if (temp_number.length > 20) {
+          mathExpression.push(Number(temp_number).toExponential(10));
+        } else {
+          mathExpression.push(Number(temp_number));
+        }
       } else {
-        mathExpression.push(Number(temp_number));
+        clearScreen();
       }
-
       decimalAllow = true;
     }
-    resultInput.textContent = e.target.innerText;
-    temp_operator = e.target.innerText;
+    if (e.target.innerText === "−") {
+      resultInput.textContent = "-";
+      temp_operator = "-";
+    } else {
+      resultInput.textContent = e.target.innerText;
+      temp_operator = e.target.innerText;
+    }
 
     displayArray(textDisplay1, mathExpression);
 
@@ -246,8 +256,32 @@ function operatorFn(e) {
 function calculatorFn(displaySlot) {
   let targetOperator = mathExpression[1];
   switch (targetOperator) {
+    case "-":
+      mathExpression[0] = mathExpression[0] - mathExpression[2];
+      if (
+        isNaN(mathExpression[0]) === true ||
+        mathExpression[0] === undefined
+      ) {
+        clearScreen();
+        textDisplay4.textContent = "malformed expression";
+      }
+      if (
+        displaySlot === resultInput &&
+        mathExpression[0].toString().length > 13
+      ) {
+        mathExpression = [mathExpression[0].toExponential(7)];
+      } else mathExpression = [mathExpression[0]];
+      displayArray(displaySlot, mathExpression);
+      break;
     case "x":
       mathExpression[0] = mathExpression[0] * mathExpression[2];
+      if (
+        isNaN(mathExpression[0]) === true ||
+        mathExpression[0] === undefined
+      ) {
+        clearScreen();
+        textDisplay4.textContent = "malformed expression";
+      }
       if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
@@ -259,6 +293,13 @@ function calculatorFn(displaySlot) {
     case "÷":
       mathExpression[0] = mathExpression[0] / mathExpression[2];
       if (
+        isNaN(mathExpression[0]) === true ||
+        mathExpression[0] === undefined
+      ) {
+        clearScreen();
+        textDisplay4.textContent = "malformed expression";
+      }
+      if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
       ) {
@@ -269,6 +310,13 @@ function calculatorFn(displaySlot) {
     case "−":
       mathExpression[0] = mathExpression[0] - mathExpression[2];
       if (
+        isNaN(mathExpression[0]) === true ||
+        mathExpression[0] === undefined
+      ) {
+        clearScreen();
+        textDisplay4.textContent = "malformed expression";
+      }
+      if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
       ) {
@@ -278,6 +326,13 @@ function calculatorFn(displaySlot) {
       break;
     case "+":
       mathExpression[0] = mathExpression[0] + mathExpression[2];
+      if (
+        isNaN(mathExpression[0]) === true ||
+        mathExpression[0] === undefined
+      ) {
+        clearScreen();
+        textDisplay4.textContent = "malformed expression";
+      }
       if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
