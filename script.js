@@ -72,12 +72,23 @@ Array.from(operatorObjects).forEach((element) =>
 
 function canceler() {
   resultInput.textContent = "";
+  numeratorAllow = true;
+  numeratorBlock = false;
+  operatorAllow = false;
+  bodyID.classList.remove("display-result");
+  bodyID.classList.remove("text-display-1");
+  mathExpression = [];
+  temp_number = "";
+  temp_operator = "";
   bodyID.classList.remove("display-result");
   bodyID.classList.remove("text-display-1");
 }
 
 function clearScreen() {
   resultInput.textContent = "";
+  numeratorAllow = true;
+  numeratorBlock = false;
+  operatorAllow = false;
   textDisplay1.textContent = "";
   textDisplay2.textContent = "";
   textDisplay3.textContent = "";
