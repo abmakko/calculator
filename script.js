@@ -111,6 +111,8 @@ function squarerooter() {
     let tempResult = Number(resultInput.textContent);
     if (tempResult > 0) {
       tempResult = Math.sqrt(tempResult);
+    } else {
+      textDisplay1.textContent = "negative square root error";
     }
 
     if (tempResult.toString().length > 13) {
@@ -252,6 +254,7 @@ function operatorFn(e) {
         }
       } else {
         clearScreen();
+        mathExpression = [];
       }
       decimalAllow = true;
     }
@@ -287,14 +290,17 @@ function calculatorFn(displaySlot) {
   switch (targetOperator) {
     case "-":
       mathExpression[0] = mathExpression[0] - mathExpression[2];
+      if (textDisplay3.textContent.includes("malformed math expression")) {
+        textDisplay3.textContent = "";
+      }
       if (
         isNaN(mathExpression[0]) === true ||
         mathExpression[0] === undefined
       ) {
         clearScreen();
-        textDisplay4.textContent = "malformed expression";
-      }
-
+        textDisplay2.textContent = "malformed math expression";
+        mathExpression = [];
+      } else mathExpression = [mathExpression[0]];
       if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
@@ -303,17 +309,22 @@ function calculatorFn(displaySlot) {
         mathExpression[0].toString().length > 13
       ) {
         mathExpression = [mathExpression[0].toExponential(7)];
-      } else mathExpression = [mathExpression[0]];
+      }
       displayArray(displaySlot, mathExpression);
       break;
     case "x":
       mathExpression[0] = mathExpression[0] * mathExpression[2];
+      if (textDisplay3.textContent.includes("malformed math expression")) {
+        textDisplay3.textContent = "";
+      }
+
       if (
         isNaN(mathExpression[0]) === true ||
         mathExpression[0] === undefined
       ) {
         clearScreen();
-        textDisplay4.textContent = "malformed expression";
+        textDisplay2.textContent = "malformed math expression";
+        mathExpression = [];
       }
       if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
@@ -328,13 +339,17 @@ function calculatorFn(displaySlot) {
       break;
     case "÷":
       mathExpression[0] = mathExpression[0] / mathExpression[2];
+      if (textDisplay3.textContent.includes("malformed math expression")) {
+        textDisplay3.textContent = "";
+      }
       if (
         isNaN(mathExpression[0]) === true ||
         mathExpression[0] === undefined
       ) {
         clearScreen();
-        textDisplay4.textContent = "malformed expression";
-      }
+        textDisplay2.textContent = "malformed math expression";
+        mathExpression = [];
+      } else mathExpression = [mathExpression[0]];
       if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
@@ -343,18 +358,22 @@ function calculatorFn(displaySlot) {
         mathExpression[0].toString().length > 13
       ) {
         mathExpression = [mathExpression[0].toExponential(7)];
-      } else mathExpression = [mathExpression[0]];
+      }
       displayArray(displaySlot, mathExpression);
       break;
     case "−":
       mathExpression[0] = mathExpression[0] - mathExpression[2];
+      if (textDisplay3.textContent.includes("malformed math expression")) {
+        textDisplay3.textContent = "";
+      }
       if (
         isNaN(mathExpression[0]) === true ||
         mathExpression[0] === undefined
       ) {
         clearScreen();
-        textDisplay4.textContent = "malformed expression";
-      }
+        textDisplay2.textContent = "malformed math expression";
+        mathExpression = [];
+      } else mathExpression = [mathExpression[0]];
       if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
@@ -363,18 +382,22 @@ function calculatorFn(displaySlot) {
         mathExpression[0].toString().length > 13
       ) {
         mathExpression = [mathExpression[0].toExponential(7)];
-      } else mathExpression = [mathExpression[0]];
+      }
       displayArray(displaySlot, mathExpression);
       break;
     case "+":
       mathExpression[0] = mathExpression[0] + mathExpression[2];
+      if (textDisplay3.textContent.includes("malformed math expression")) {
+        textDisplay3.textContent = "";
+      }
       if (
         isNaN(mathExpression[0]) === true ||
         mathExpression[0] === undefined
       ) {
         clearScreen();
-        textDisplay4.textContent = "malformed expression";
-      }
+        textDisplay2.textContent = "malformed math expression";
+        mathExpression = [];
+      } else mathExpression = [mathExpression[0]];
       if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
@@ -383,7 +406,7 @@ function calculatorFn(displaySlot) {
         mathExpression[0].toString().length > 13
       ) {
         mathExpression = [mathExpression[0].toExponential(7)];
-      } else mathExpression = [mathExpression[0]];
+      }
       displayArray(displaySlot, mathExpression);
       break;
   }
