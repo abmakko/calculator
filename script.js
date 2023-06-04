@@ -206,6 +206,10 @@ function backSpacer(e) {
     0,
     resultInput.textContent.length - 1
   );
+
+  if (!resultInput.textContent.includes(".")) {
+    decimalAllow = true;
+  }
 }
 
 function numeratorFn(e) {
@@ -293,7 +297,7 @@ function calculatorFn(displaySlot) {
         textDisplay4.textContent = "malformed expression";
       }
 
-      if (mathExpression[0] < 0) {
+      if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
@@ -313,7 +317,7 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
-      if (mathExpression[0] < 0) {
+      if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
@@ -333,7 +337,7 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
-      if (mathExpression[0] < 0) {
+      if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
@@ -353,7 +357,7 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
-      if (mathExpression[0] < 0) {
+      if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
@@ -373,7 +377,7 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
-      if (mathExpression[0] < 0) {
+      if (mathExpression[0] < 0 && mathExpression[0].toString().length > 5) {
         mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
