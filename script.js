@@ -50,8 +50,6 @@ let plusNegativeToggle = true;
 let decimalAllow = true;
 let numeratorBlock = false;
 
-let numeratorCount = 0;
-
 let temp_operator = "";
 let temp_number = "";
 let mathExpression = [];
