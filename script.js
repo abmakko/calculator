@@ -76,6 +76,7 @@ function canceler() {
   numeratorBlock = false;
   operatorAllow = false;
   plusNegativeAllow = true;
+  decimalAllow = true;
   bodyID.classList.remove("display-result");
   bodyID.classList.remove("text-display-1");
   mathExpression = [];
@@ -91,6 +92,7 @@ function clearScreen() {
   numeratorBlock = false;
   operatorAllow = false;
   plusNegativeAllow = true;
+  decimalAllow = true;
   textDisplay1.textContent = "";
   textDisplay2.textContent = "";
   textDisplay3.textContent = "";
@@ -105,8 +107,8 @@ function clearScreen() {
 function squarerooter() {
   if (operandtoggle === false) {
     operatorAllow = true;
-    plusNegativeAllow = false;
-    decimalAllow = false;
+    plusNegativeAllow = true;
+    decimalAllow = true;
     numeratorBlock = true;
     let tempResult = Number(resultInput.textContent);
     if (tempResult > 0) {
@@ -129,9 +131,9 @@ function displayArray(displayBlock, array) {
 function equalFn() {
   if (operandtoggle === false) {
     operatorAllow = true;
-    plusNegativeAllow = false;
+    plusNegativeAllow = true;
 
-    decimalAllow = false;
+    decimalAllow = true;
     numeratorBlock = true;
     if (isNaN(mathExpression[0]) && mathExpression.length === 3) {
       temp_number = resultInput.textContent;
@@ -163,13 +165,38 @@ function equalFn() {
 function plusNegative(e) {
   if (plusNegativeAllow === true) {
     if (plusNegativeToggle === true) {
-      resultInput.textContent = "−";
+      if (
+        (resultInput.textContent === " " || resultInput.textContent === "+") &&
+        resultInput.textContent !== "-"
+      ) {
+        resultInput.textContent = "−";
+      } else if (
+        operandtoggle === false &&
+        !resultInput.textContent.includes("-") &&
+        !resultInput.textContent.includes("+")
+      ) {
+        resultInput.textContent = "-" + resultInput.textContent;
+      } else if (
+        operandtoggle === false &&
+        resultInput.textContent.includes("+")
+      ) {
+        resultInput.textContent = resultInput.textContent.replace("+", "-");
+      }
       plusNegativeToggle = false;
       temp_operator = "-";
+      decimalAllow = true;
     } else {
-      resultInput.textContent = "+";
+      if (resultInput.textContent === "−" && resultInput.textContent !== "+") {
+        resultInput.textContent = "+";
+      } else if (
+        operandtoggle === false &&
+        resultInput.textContent.includes("-")
+      ) {
+        resultInput.textContent = resultInput.textContent.replace("-", "+");
+      }
       plusNegativeToggle = true;
       temp_operator = "+";
+      decimalAllow = true;
     }
   }
 }
@@ -183,7 +210,7 @@ function backSpacer(e) {
 
 function numeratorFn(e) {
   numeratorAllow = true;
-  plusNegativeAllow = false;
+  plusNegativeAllow = true;
   bodyID.classList.remove("display-result");
   //the result screen has to be wiped only once before new numerator input, the boolean check toggle ensures that
   if (operandtoggle === true) {
@@ -265,6 +292,10 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
+
+      if (mathExpression[0] < 0) {
+        mathExpression[0] = mathExpression[0].toFixed(2);
+      }
       if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
@@ -281,6 +312,9 @@ function calculatorFn(displaySlot) {
       ) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
+      }
+      if (mathExpression[0] < 0) {
+        mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
         displaySlot === resultInput &&
@@ -299,6 +333,9 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
+      if (mathExpression[0] < 0) {
+        mathExpression[0] = mathExpression[0].toFixed(2);
+      }
       if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
@@ -316,6 +353,9 @@ function calculatorFn(displaySlot) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
       }
+      if (mathExpression[0] < 0) {
+        mathExpression[0] = mathExpression[0].toFixed(2);
+      }
       if (
         displaySlot === resultInput &&
         mathExpression[0].toString().length > 13
@@ -332,6 +372,9 @@ function calculatorFn(displaySlot) {
       ) {
         clearScreen();
         textDisplay4.textContent = "malformed expression";
+      }
+      if (mathExpression[0] < 0) {
+        mathExpression[0] = mathExpression[0].toFixed(2);
       }
       if (
         displaySlot === resultInput &&
