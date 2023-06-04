@@ -135,6 +135,10 @@ function equalFn() {
 
     decimalAllow = true;
     numeratorBlock = true;
+    if (textDisplay2.textContent.includes("malformed math expression")) {
+      textDisplay2.textContent = "";
+    }
+
     if (isNaN(mathExpression[0]) && mathExpression.length === 3) {
       temp_number = resultInput.textContent;
       mathExpression.push(Number(temp_number));
