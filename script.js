@@ -192,6 +192,7 @@ function plusNegative(e) {
     } else {
       if (resultInput.textContent === "−" && resultInput.textContent !== "+") {
         resultInput.textContent = "+";
+        temp_operator = "+";
       } else if (
         operandtoggle === false &&
         resultInput.textContent.includes("-")
@@ -199,7 +200,7 @@ function plusNegative(e) {
         resultInput.textContent = resultInput.textContent.replace("-", "+");
       }
       plusNegativeToggle = true;
-      temp_operator = "+";
+
       decimalAllow = true;
     }
   }
